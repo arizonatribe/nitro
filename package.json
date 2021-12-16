@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
+    "build:threadbare-philosophy": "nx build threadbare-philosophy",
     "test": "nx test"
   },
   "private": true,
