@@ -1,0 +1,54 @@
+{
+  "root": "apps/threadbare-philosophy",
+  "sourceRoot": "apps/threadbare-philosophy",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/threadbare-philosophy",
+        "outputPath": "dist/apps/threadbare-philosophy"
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "threadbare-philosophy:build",
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "threadbare-philosophy:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "threadbare-philosophy:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/threadbare-philosophy"],
+      "options": {
+        "jestConfig": "apps/threadbare-philosophy/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/threadbare-philosophy/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

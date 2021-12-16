@@ -1,0 +1,28 @@
+{
+  "root": "apps/threadbare-philosophy-e2e",
+  "sourceRoot": "apps/threadbare-philosophy-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/threadbare-philosophy-e2e/cypress.json",
+        "devServerTarget": "threadbare-philosophy:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "threadbare-philosophy:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/threadbare-philosophy-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["threadbare-philosophy"]
+}

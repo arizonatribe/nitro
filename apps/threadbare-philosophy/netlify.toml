@@ -1,0 +1,3 @@
+[build]
+  base = "."
+  ignore = "git diff --quiet HEAD^ HEAD apps/threadbare-philosophy/"

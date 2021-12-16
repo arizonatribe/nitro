@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "threadbare-philosophy": "apps/threadbare-philosophy",
+    "threadbare-philosophy-e2e": "apps/threadbare-philosophy-e2e"
+  }
+}
