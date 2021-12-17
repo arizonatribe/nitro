@@ -1,20 +1,10 @@
 {
-  "extends": [
-    "plugin:@nrwl/nx/react-typescript",
-    "../../.eslintrc.json",
-    "next",
-    "next/core-web-vitals"
-  ],
+  "extends": ["../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "@next/next/no-html-link-for-pages": [
-          "error",
-          "apps/threadbare-philosophy/pages"
-        ]
-      }
+      "rules": {}
     },
     {
       "files": ["*.ts", "*.tsx"],
@@ -25,9 +15,6 @@
       "rules": {}
     }
   ],
-  "env": {
-    "jest": true
-  },
   "rules": {
     "indent": ["warn", 2],
     "semi": ["error", "never"],
