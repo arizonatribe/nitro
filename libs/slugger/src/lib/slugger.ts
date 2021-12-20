@@ -1,5 +1,8 @@
 import * as fs from "fs"
 import * as path from "path"
+import { remark } from "remark"
+import html from "remark-html"
+
 import matter from "gray-matter"
 import { resolvePathIfExists } from "@vanillas/cli-toolkit"
 
@@ -13,8 +16,10 @@ export function pickSlug(
 ) {
   const realSlug = slug.replace(/\.md$/, "")
   const fullPath = path.join(baseDir, `${realSlug}.md`)
+
   const fileContents = fs.readFileSync(fullPath, "utf8")
   const { data, content } = matter(fileContents)
+
 
   return pickFields.reduce((acc, field) => ({
     ...acc,
@@ -24,8 +29,13 @@ export function pickSlug(
         ? content
         : data[field]
           ? data[field]
-          : undefined
+          : null
   }), {})
+}
+
+export async function toHtml(markdown: string) {
+  const result = await remark().use(html).process(markdown)
+  return result.toString()
 }
 
 export function getSlugs(folderPath: string, pickFields: string[] = []) {

@@ -3,7 +3,7 @@ import { ReactElement } from "react"
 import Document, { Html, Head, Main, NextScript } from "next/document"
 import { ServerStyleSheet } from "styled-components"
 
-export default class CustomDocument extends Document<{
+class CustomDocument extends Document<{
   styleTags: ReactElement[];
 }> {
   static getInitialProps({ renderPage }) {
@@ -20,7 +20,7 @@ export default class CustomDocument extends Document<{
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>{this.props.styleTags}</Head>
         <body>
           <Main />
@@ -30,3 +30,5 @@ export default class CustomDocument extends Document<{
     )
   }
 }
+
+export default CustomDocument

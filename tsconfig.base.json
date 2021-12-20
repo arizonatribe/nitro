@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowJs": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -16,6 +17,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nitro/blog-layout": ["libs/blog-layout/src/index.ts"],
       "@nitro/slugger": ["libs/slugger/src/index.ts"]
     }
   },

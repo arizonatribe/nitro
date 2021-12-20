@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "blog-layout": "libs/blog-layout",
     "slugger": "libs/slugger",
     "threadbare-philosophy": "apps/threadbare-philosophy",
     "threadbare-philosophy-e2e": "apps/threadbare-philosophy-e2e"
