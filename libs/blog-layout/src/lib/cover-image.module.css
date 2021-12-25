@@ -1,0 +1,6 @@
+.coverImageWrapper {
+  object-fit: cover;
+  object-position: top;
+  overflow: hidden;
+  max-height: 30em;
+}

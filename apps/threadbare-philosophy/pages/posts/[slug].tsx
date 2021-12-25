@@ -11,20 +11,30 @@ import {
   MoreStories,
   Post as PostType,
 } from "@nitro/blog-layout"
-import { getSlugs, toHtml, pickSlug } from "@nitro/slugger"
+import {
+  // toHtml,
+  getSlugs,
+  FrontMatter,
+  renderMarkdown,
+  pickFrontMatter,
+  getMarkdownContent,
+} from "@nitro/slugger"
 import { CMS_NAME, APP_IMAGE_URL, POSTS_DIR } from "../../constants"
 
 type Props = {
-  post: PostType
+  source: string
+  frontMatter: PostType
   morePosts: PostType[]
   preview?: boolean
 }
 
-function Post({ post, morePosts, preview }: Props) {
+function Post({ source, frontMatter, morePosts, preview }: Props) {
   const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
+
+  if (!router.isFallback && !frontMatter?.slug) {
     return <ErrorPage statusCode={404} />
   }
+
   return (
     <Layout preview={preview} appName={CMS_NAME} appImgUrl={APP_IMAGE_URL}>
       <Container>
@@ -36,17 +46,19 @@ function Post({ post, morePosts, preview }: Props) {
             <article className="mb-32">
               <Head>
                 <title>
-                  {post.title} | {CMS_NAME}
+                  {frontMatter.title} | {CMS_NAME}
                 </title>
-                {post.ogImage?.url && <meta property="og:image" content={post.ogImage.url} />}
+                {frontMatter.ogImage?.url && (
+                  <meta property="og:image" content={frontMatter.ogImage.url} />
+                )}
               </Head>
               <PostHeader
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
+                title={frontMatter.title}
+                coverImage={frontMatter.coverImage}
+                date={frontMatter.date}
+                author={frontMatter.author}
               />
-              <PostBody content={post.content} />
+              <PostBody source={source} frontMatter={frontMatter} />
             </article>
             {morePosts?.length > 0 && <MoreStories posts={morePosts} />}
           </>
@@ -63,7 +75,8 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-  const post = pickSlug(params.slug, POSTS_DIR, [
+  const doc = getMarkdownContent(params.slug, POSTS_DIR)
+  const frontMatter = pickFrontMatter(doc, [
     "title",
     "date",
     "slug",
@@ -71,17 +84,11 @@ export async function getStaticProps({ params }: Params) {
     "content",
     "ogImage",
     "coverImage",
-  ]) as PostType
-  const content = await toHtml(post.content ?? "")
+  ])
+  // const source = await toHtml(doc.content)
+  const { compiledSource: source } = await renderMarkdown(doc.content, frontMatter)
 
-  return {
-    props: {
-      post: {
-        ...post,
-        content,
-      },
-    },
-  }
+  return { props: { source: source, frontMatter } }
 }
 
 export async function getStaticPaths() {
@@ -89,7 +96,7 @@ export async function getStaticPaths() {
 
   return {
     fallback: false,
-    paths: posts.map((post: PostType) => {
+    paths: posts.map((post: FrontMatter) => {
       return {
         params: {
           slug: post.slug,

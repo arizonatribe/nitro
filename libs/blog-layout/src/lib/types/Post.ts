@@ -1,6 +1,7 @@
+import { FrontMatter } from "@nitro/slugger"
 import { Author } from "./Author"
 
-type Post = {
+interface Post extends FrontMatter {
   slug: string
   title: string
   date: string
