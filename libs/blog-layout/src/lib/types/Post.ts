@@ -1,7 +1,8 @@
-import { FrontMatter } from "@nitro/slugger"
+import { NestedFrontMatter } from "@nitro/slugger"
 import { Author } from "./Author"
 
-interface Post extends FrontMatter {
+
+interface Post extends NestedFrontMatter {
   slug: string
   title: string
   date: string

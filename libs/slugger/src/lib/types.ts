@@ -11,6 +11,10 @@ export interface FrontMatter {
   [prop: string]: string;
 }
 
+export interface NestedFrontMatter {
+  [prop: string]: string | FrontMatter;
+}
+
 export interface MarkdownDocument {
   name?: string
   frontMatter: FrontMatter
