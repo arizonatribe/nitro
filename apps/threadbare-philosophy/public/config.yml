@@ -18,11 +18,11 @@ collections:
     format: frontmatter
     # slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields:
-      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Cover Image", name: "coverImage", widget: "image"}
-      - {label: "Image", name: "ogImage", widget: "image"}
+      - {label: "Image", name: "ogImage", widget: "image", required: false}
       - {label: "Author", name: "author", widget: "string"}
-      - {label: "Excerpt", name: "excerpt", widget: "text"}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Content", name: "content", widget: "markdown"}
+      - {label: "Content", name: "content", widget: "markdown", required: false}
