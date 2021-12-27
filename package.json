@@ -17,6 +17,7 @@
     "date-fns": "2.21.3",
     "faker": "^5.5.3",
     "gray-matter": "^4.0.3",
+    "netlify-cms-app": "^2.15.62",
     "next": "12.0.7",
     "next-mdx-remote": "^3.0.8",
     "next-remote-watch": "^1.0.0",

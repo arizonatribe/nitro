@@ -1,0 +1,28 @@
+backend:
+  name: git-gateway
+  branch: main
+publish_mode: editorial_workflow
+display_url: https://threadbare-software.com
+logo_url: https://threadbare-software.com/assets/logo.png
+media_folder: "public/assets"
+public_folder: "/assets"
+collections:
+  - name: "posts"
+    label: "Post"
+    folder: "_posts"
+    filter:
+      field: language
+      value: en
+    create: true
+    extension: mdx
+    format: frontmatter
+    # slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields:
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Cover Image", name: "coverImage", widget: "image"}
+      - {label: "Image", name: "ogImage", widget: "image"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Excerpt", name: "excerpt", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Content", name: "content", widget: "markdown"}
