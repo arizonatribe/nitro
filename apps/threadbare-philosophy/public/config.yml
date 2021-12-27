@@ -9,7 +9,7 @@ public_folder: "/assets"
 collections:
   - name: "posts"
     label: "Post"
-    folder: "_posts"
+    folder: "apps/threadbare-philosophy/_posts"
     filter:
       field: language
       value: en
