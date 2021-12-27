@@ -30,6 +30,17 @@ export function getMarkdownContent(
   return undefined
 }
 
+function toSerializableJson(val: any) {
+  return (
+    val == null
+    || typeof val === "string"
+    || typeof val === "number"
+    || typeof val === "boolean"
+  )
+    ? val
+    : JSON.stringify(val).replace(/^"|"$/, "")
+}
+
 export function pickFrontMatter(
   doc: MarkdownDocument,
   pickFields: string[] = [],
@@ -41,7 +52,7 @@ export function pickFrontMatter(
       : field === "slug"
         ? doc.name
         : doc.frontMatter[field]
-          ? doc.frontMatter[field]
+          ? toSerializableJson(doc.frontMatter[field])
           : null
   }), {})
 }

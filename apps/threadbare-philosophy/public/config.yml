@@ -4,7 +4,7 @@ backend:
 publish_mode: editorial_workflow
 display_url: https://threadbare-software.com
 logo_url: https://threadbare-software.com/assets/logo.png
-media_folder: "public/assets"
+media_folder: "apps/threadbare-philosophy/public/assets"
 public_folder: "/assets"
 collections:
   - name: "posts"
