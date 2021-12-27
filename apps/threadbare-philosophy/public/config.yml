@@ -25,4 +25,3 @@ collections:
       - {label: "Author", name: "author", widget: "string"}
       - {label: "Excerpt", name: "excerpt", widget: "text", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Content", name: "content", widget: "markdown", required: false}
